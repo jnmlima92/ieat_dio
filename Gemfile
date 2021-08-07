@@ -13,10 +13,16 @@ gem 'sass-rails', '>= 6'
 gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 4.0'
 
-
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'factory_bot_rails'
+  gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
   gem 'pry'
+end
+
+group :test do
+  gem 'rspec-rails'
+  gem 'shoulda-matchers'
 end
 
 group :development do
