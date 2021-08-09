@@ -2,7 +2,7 @@ class RestaurantsController < ApplicationController
   before_action :set_restaurant, only: %i[ show edit update destroy ]
 
   def index
-    @restaurants = Restaurant.all
+    @restaurants = current_user.restaurant
   end
 
   def show
@@ -16,7 +16,7 @@ class RestaurantsController < ApplicationController
   end
 
   def create
-    @restaurant = Restaurant.new(restaurant_params)
+    @restaurant = current_user.restaurant.build(restaurant_params)
 
     respond_to do |format|
       if @restaurant.save

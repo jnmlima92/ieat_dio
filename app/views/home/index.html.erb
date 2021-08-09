@@ -1,2 +1,33 @@
 <h1>Home#index</h1>
 <p>Find me in app/views/home/index.html.erb</p>
+
+<% if user_signed_in? %>
+  <% if current_user.restaurant? %>
+    <h3>Seus Produtos</h3>
+
+    <table>
+      <thead>
+        <th>Nome</th>
+        <th>Valor</th>
+      </thead>
+      <tbody>
+        <% current_user.restaurants.first.products.each do |product| %>
+          <tr>
+            <td><%= product.name %></td>
+            <td><%= number_to_currency(product.value.to_f, delimiter: ',', unit: '') %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+
+  <% if current_user.costumer? %>
+    <h3>Seus Produtos - Costumer</h3>
+
+  <% end %>
+  
+  <% if current_user.admin? %>
+    <h3>Todos os Produtos</h3>
+
+  <% end %>
+<% end %>
